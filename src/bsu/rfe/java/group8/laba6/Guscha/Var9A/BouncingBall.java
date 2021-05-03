@@ -46,7 +46,7 @@ public class BouncingBall implements Runnable{
         speedY = 3*Math.sin(angle);
         // Цвет мяча выбирается случайно
         if (n==1 || n==3){
-            color = Color.GREEN;
+            color = Color.RED;
             n++;
         }else {
             color = new Color((float) Math.random(), (float) Math.random(), (float) Math.random());

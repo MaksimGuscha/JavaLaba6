@@ -11,7 +11,7 @@ public class Field extends JPanel {
     // Флаг приостановленности движения
     private boolean paused;
     private boolean paused1;
-    public Color color1=Color.GREEN;
+    public Color color1=Color.RED;
     // Динамический список скачущих мячей
     private ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>(10);
     // Класс таймер отвечает за регулярную генерацию событий ActionEvent
