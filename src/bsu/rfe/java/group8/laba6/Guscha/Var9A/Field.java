@@ -11,7 +11,7 @@ public class Field extends JPanel {
     // Флаг приостановленности движения
     private boolean paused;
     private boolean paused1;
-
+    public Color color1=Color.GREEN;
     // Динамический список скачущих мячей
     private ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>(10);
     // Класс таймер отвечает за регулярную генерацию событий ActionEvent
@@ -54,19 +54,28 @@ public class Field extends JPanel {
         // Включить режим паузы
         paused = true;
     }
+    public synchronized void pause1(){
+        paused1 = true;
+    }
     // Метод синхронизированный, т.е. только один поток может
     // одновременно быть внутри
     public synchronized void resume(){
         // Выключить режим паузы
         paused = false;
-
+        paused1 = false;
         // Будим все ожидающие продолжения потоки
         notifyAll();
     }
     // Синхронизированный метод проверки, может ли мяч двигаться
     // (не включен ли режим паузы?)
     public synchronized void canMove(BouncingBall ball) throws InterruptedException{
-
+        if(paused1){
+            if (ball.getColor()==color1){
+                wait();
+            }
+            // Если режим паузы включен, то поток, зашедший
+            // внутрь данного метода, засыпает
+        }
         if(paused){
             wait();
         }
